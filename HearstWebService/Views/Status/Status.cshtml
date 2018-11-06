@@ -1,0 +1,42 @@
+﻿@using HearstWebService.Models
+@using System.IO
+
+@{
+    ViewBag.Title = "Hearst Web Service";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model StatusModel
+
+@{
+    var action = "unknownRequest";
+    switch (Model.RequestType)
+    {
+        case RequestTypes.CreateReport:
+            action = "createReport";
+            break;
+        case RequestTypes.ApproveData:
+        case RequestTypes.ActualToPm:
+        case RequestTypes.TransferData:
+        case RequestTypes.LockScenario:
+            action = "commonRequest";
+            break;
+    }
+}
+
+<h2 class="text-center message success-message">Выполнено успешно</h2>
+<h2 class="text-center message error-message">При выполнении возникли проблемы</h2>
+<h2 class="text-center message invalid-parameter-message">Недопустимое значение параметра</h2>
+<h2 class="text-center message unknown-request-message">Неизвестный тип запроса</h2>
+
+@{Html.RenderPartial("_Loader");}
+
+@section scripts {
+    <script>
+        var downloadFileUrl = '@Path.Combine(Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath, "DownloadFile")/';
+        var url = '@Model.Url';
+        var action = @($"function(){{ {action}(); }};");
+    </script>
+    @Scripts.Render("~/app/js/status")
+}
+

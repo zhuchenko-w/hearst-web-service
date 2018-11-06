@@ -1,0 +1,36 @@
+﻿@using HearstWebService.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Вход";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="login-form">
+    <h2>@ViewBag.Title</h2>
+    @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(m => m.Domain, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Domain, new { @class = "form-control", placeholder = "Домен" })
+            @Html.ValidationMessageFor(m => m.Domain)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Username, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Имя пользователя" })
+            @Html.ValidationMessageFor(m => m.Username)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Пароль" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+        <button id="log-in-btn" type="submit" class="btn btn-primary">Войти</button>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/app/js/login")
+}

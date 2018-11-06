@@ -1,0 +1,137 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstWebService", "HearstWebService\HearstWebService.csproj", "{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstWebService.Data.Accessor", "HearstWebService.Data\HearstWebService.Data.Accessor.csproj", "{09B77FED-D353-4CC2-8649-B94564AAA601}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstWebService.Common", "HearstWebService.Utils\HearstWebService.Common.csproj", "{5D12AA4C-3A3D-4291-B99E-88C35707A354}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstWebService.Data.Models", "HearstWebService.Data.Model\HearstWebService.Data.Models.csproj", "{594456E3-A181-499F-918E-6A7ABA197C4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstWebService.Interfaces", "HearstWebService.Data.Interfaces\HearstWebService.Interfaces.csproj", "{0F31899A-D927-4BFF-9A5C-E373EC8F6144}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearstWebService.BusinessLogic", "HearstWebService.BusinessLogic\HearstWebService.BusinessLogic.csproj", "{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{7BB113E6-E83A-4569-AD21-2EB257AD847A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}.Debug|x64.ActiveCfg = Debug|x64
+		{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}.Debug|x64.Build.0 = Debug|x64
+		{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}.Debug|x86.ActiveCfg = Debug|x86
+		{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}.Debug|x86.Build.0 = Debug|x86
+		{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}.Release|x64.ActiveCfg = Release|x64
+		{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}.Release|x64.Build.0 = Release|x64
+		{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}.Release|x86.ActiveCfg = Release|x86
+		{8FF68501-0BFE-40F3-A9D5-2DB382D8C9AC}.Release|x86.Build.0 = Release|x86
+		{09B77FED-D353-4CC2-8649-B94564AAA601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09B77FED-D353-4CC2-8649-B94564AAA601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09B77FED-D353-4CC2-8649-B94564AAA601}.Debug|x64.ActiveCfg = Debug|x64
+		{09B77FED-D353-4CC2-8649-B94564AAA601}.Debug|x64.Build.0 = Debug|x64
+		{09B77FED-D353-4CC2-8649-B94564AAA601}.Debug|x86.ActiveCfg = Debug|x86
+		{09B77FED-D353-4CC2-8649-B94564AAA601}.Debug|x86.Build.0 = Debug|x86
+		{09B77FED-D353-4CC2-8649-B94564AAA601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09B77FED-D353-4CC2-8649-B94564AAA601}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09B77FED-D353-4CC2-8649-B94564AAA601}.Release|x64.ActiveCfg = Release|x64
+		{09B77FED-D353-4CC2-8649-B94564AAA601}.Release|x64.Build.0 = Release|x64
+		{09B77FED-D353-4CC2-8649-B94564AAA601}.Release|x86.ActiveCfg = Release|x86
+		{09B77FED-D353-4CC2-8649-B94564AAA601}.Release|x86.Build.0 = Release|x86
+		{5D12AA4C-3A3D-4291-B99E-88C35707A354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D12AA4C-3A3D-4291-B99E-88C35707A354}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D12AA4C-3A3D-4291-B99E-88C35707A354}.Debug|x64.ActiveCfg = Debug|x64
+		{5D12AA4C-3A3D-4291-B99E-88C35707A354}.Debug|x64.Build.0 = Debug|x64
+		{5D12AA4C-3A3D-4291-B99E-88C35707A354}.Debug|x86.ActiveCfg = Debug|x86
+		{5D12AA4C-3A3D-4291-B99E-88C35707A354}.Debug|x86.Build.0 = Debug|x86
+		{5D12AA4C-3A3D-4291-B99E-88C35707A354}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D12AA4C-3A3D-4291-B99E-88C35707A354}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D12AA4C-3A3D-4291-B99E-88C35707A354}.Release|x64.ActiveCfg = Release|x64
+		{5D12AA4C-3A3D-4291-B99E-88C35707A354}.Release|x64.Build.0 = Release|x64
+		{5D12AA4C-3A3D-4291-B99E-88C35707A354}.Release|x86.ActiveCfg = Release|x86
+		{5D12AA4C-3A3D-4291-B99E-88C35707A354}.Release|x86.Build.0 = Release|x86
+		{594456E3-A181-499F-918E-6A7ABA197C4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{594456E3-A181-499F-918E-6A7ABA197C4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{594456E3-A181-499F-918E-6A7ABA197C4F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{594456E3-A181-499F-918E-6A7ABA197C4F}.Debug|x64.Build.0 = Debug|Any CPU
+		{594456E3-A181-499F-918E-6A7ABA197C4F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{594456E3-A181-499F-918E-6A7ABA197C4F}.Debug|x86.Build.0 = Debug|Any CPU
+		{594456E3-A181-499F-918E-6A7ABA197C4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{594456E3-A181-499F-918E-6A7ABA197C4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{594456E3-A181-499F-918E-6A7ABA197C4F}.Release|x64.ActiveCfg = Release|Any CPU
+		{594456E3-A181-499F-918E-6A7ABA197C4F}.Release|x64.Build.0 = Release|Any CPU
+		{594456E3-A181-499F-918E-6A7ABA197C4F}.Release|x86.ActiveCfg = Release|Any CPU
+		{594456E3-A181-499F-918E-6A7ABA197C4F}.Release|x86.Build.0 = Release|Any CPU
+		{0F31899A-D927-4BFF-9A5C-E373EC8F6144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F31899A-D927-4BFF-9A5C-E373EC8F6144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F31899A-D927-4BFF-9A5C-E373EC8F6144}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0F31899A-D927-4BFF-9A5C-E373EC8F6144}.Debug|x64.Build.0 = Debug|Any CPU
+		{0F31899A-D927-4BFF-9A5C-E373EC8F6144}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0F31899A-D927-4BFF-9A5C-E373EC8F6144}.Debug|x86.Build.0 = Debug|Any CPU
+		{0F31899A-D927-4BFF-9A5C-E373EC8F6144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F31899A-D927-4BFF-9A5C-E373EC8F6144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F31899A-D927-4BFF-9A5C-E373EC8F6144}.Release|x64.ActiveCfg = Release|Any CPU
+		{0F31899A-D927-4BFF-9A5C-E373EC8F6144}.Release|x64.Build.0 = Release|Any CPU
+		{0F31899A-D927-4BFF-9A5C-E373EC8F6144}.Release|x86.ActiveCfg = Release|Any CPU
+		{0F31899A-D927-4BFF-9A5C-E373EC8F6144}.Release|x86.Build.0 = Release|Any CPU
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}.Debug|x64.Build.0 = Debug|Any CPU
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}.Debug|x86.Build.0 = Debug|Any CPU
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}.Release|x64.ActiveCfg = Release|Any CPU
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}.Release|x64.Build.0 = Release|Any CPU
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}.Release|x86.ActiveCfg = Release|Any CPU
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{15C5CEC0-4F01-4DB0-A80B-D33B5AC41069} = {7BB113E6-E83A-4569-AD21-2EB257AD847A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FED1D6B3-5760-4298-9102-A53670E5A3AA}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://dis.hfm.ru:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = HearstWebService\\HearstWebService.csproj
+		SccProjectName1 = HearstWebService
+		SccLocalPath1 = HearstWebService
+		SccProjectUniqueName2 = HearstWebService.Data\\HearstWebService.Data.Accessor.csproj
+		SccProjectName2 = HearstWebService.Data
+		SccLocalPath2 = HearstWebService.Data
+		SccProjectUniqueName3 = HearstWebService.Utils\\HearstWebService.Common.csproj
+		SccProjectName3 = HearstWebService.Utils
+		SccLocalPath3 = HearstWebService.Utils
+		SccProjectUniqueName4 = HearstWebService.Data.Model\\HearstWebService.Data.Models.csproj
+		SccProjectName4 = HearstWebService.Data.Model
+		SccLocalPath4 = HearstWebService.Data.Model
+		SccProjectUniqueName5 = HearstWebService.Data.Interfaces\\HearstWebService.Interfaces.csproj
+		SccProjectName5 = HearstWebService.Data.Interfaces
+		SccLocalPath5 = HearstWebService.Data.Interfaces
+		SccProjectUniqueName6 = HearstWebService.BusinessLogic\\HearstWebService.BusinessLogic.csproj
+		SccProjectTopLevelParentUniqueName6 = HearstWebService.sln
+		SccProjectName6 = HearstWebService.BusinessLogic
+		SccLocalPath6 = HearstWebService.BusinessLogic
+	EndGlobalSection
+EndGlobal
