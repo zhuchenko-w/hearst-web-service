@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Security.Principal;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -31,11 +32,8 @@ namespace HearstWebService.Controllers
         {
             try
             {
-                return await RunImpersonated(async () =>
-                {
-                    var filePath = await _reportLogic.Value.CreateReport(parameters);
-                    return GetOutputFileAsResponse(filePath, GetOutputReportFilename(filePath, parameters.Scenario, parameters.Year, parameters.KindVgo));
-                });
+                var filePath = await _reportLogic.Value.CreateReport(((WindowsIdentity)RequestContext.Principal.Identity).AccessToken, parameters);
+                return GetOutputFileAsResponse(filePath, GetOutputReportFilename(filePath, parameters.Scenario, parameters.Year, parameters.KindVgo));
             }
             catch (InvalidParameterException ex)
             {
@@ -53,13 +51,10 @@ namespace HearstWebService.Controllers
         {
             try
             {
-                return await RunImpersonated(async () =>
-                {
-                    var filePath = await _reportLogic.Value.CreateReport(parameters);
-                    var fileId = FileStorageHelper.CopyFileToStorage(filePath, GetOutputReportFilename(filePath, parameters.Scenario, parameters.Year, parameters.KindVgo));
+                var filePath = await _reportLogic.Value.CreateReport(((WindowsIdentity)RequestContext.Principal.Identity).AccessToken, parameters);
+                var fileId = FileStorageHelper.CopyFileToStorage(filePath, GetOutputReportFilename(filePath, parameters.Scenario, parameters.Year, parameters.KindVgo));
 
-                    return Request.CreateResponse(HttpStatusCode.OK, fileId); ;
-                });
+                return Request.CreateResponse(HttpStatusCode.OK, fileId);
             }
             catch (InvalidParameterException ex)
             {

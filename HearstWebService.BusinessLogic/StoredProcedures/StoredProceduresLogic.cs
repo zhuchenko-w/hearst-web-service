@@ -1,5 +1,6 @@
 ﻿using HearstWebService.Data.Models;
 using HearstWebService.Interfaces;
+using Microsoft.Win32.SafeHandles;
 using System;
 using System.Data;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace HearstWebService.BusinessLogic.StoredProcedures
         {
         }
 
-        public async Task<bool> ApproveData(int batchNumber)
+        public async Task<bool> ApproveData(SafeAccessTokenHandle accessToken, int batchNumber)
         {
             var batchNumberParameter = new StoredProcedureParameter
             {
@@ -23,13 +24,13 @@ namespace HearstWebService.BusinessLogic.StoredProcedures
                 Type = SqlDbType.Int,
                 Value = batchNumber
             };
-            return await ExecuteStoredProcedure("pApproveData", batchNumberParameter);
+            return await ExecuteStoredProcedure(accessToken, "pApproveData", batchNumberParameter);
         }
-        public async Task<bool> TransferData(int batchNumber)
+        public async Task<bool> TransferData(SafeAccessTokenHandle accessToken, int batchNumber)
         {
             try
             {
-                var affectedRows = await _dbAccessor.Value.ExecuteDataTransferProcedureAsync(batchNumber);
+                var affectedRows = await _dbAccessor.Value.ExecuteDataTransferProcedureAsync(accessToken, batchNumber);
 
                 _logger.Value.Info($"pTransferData: {affectedRows} rows affected");
 
@@ -40,13 +41,13 @@ namespace HearstWebService.BusinessLogic.StoredProcedures
                 return false;
             }
         }
-        public async Task<bool> ActualToPm(string scenario, string year)
+        public async Task<bool> ActualToPm(SafeAccessTokenHandle accessToken, string scenario, string year)
         {
             bool? paramsAreValid = null;
             try
             {
-                paramsAreValid = (await _dbAccessor.Value.GetDistinctValidActualToPmScenariosAsync()).Contains(scenario) 
-                    && (await _dbAccessor.Value.GetDistinctValidActualToPmYearsAsync()).Contains(year);
+                paramsAreValid = (await _dbAccessor.Value.GetDistinctValidActualToPmScenariosAsync(accessToken)).Contains(scenario) 
+                    && (await _dbAccessor.Value.GetDistinctValidActualToPmYearsAsync(accessToken)).Contains(year);
             }
             catch
             {
@@ -74,12 +75,12 @@ namespace HearstWebService.BusinessLogic.StoredProcedures
                     Type = SqlDbType.NVarChar,
                     Value = year
                 };
-                return await ExecuteStoredProcedure("pActualToPM", scenarioParameter, yearParameter);
+                return await ExecuteStoredProcedure(accessToken, "pActualToPM", scenarioParameter, yearParameter);
             }
 
             return false;
         }
-        public async Task<bool> LockScenario(string year, string scenario, int? actionValue)
+        public async Task<bool> LockScenario(SafeAccessTokenHandle accessToken, string year, string scenario, int? actionValue)
         {
             var yearParameter = new StoredProcedureParameter
             {
@@ -100,10 +101,10 @@ namespace HearstWebService.BusinessLogic.StoredProcedures
                 Value = actionValue
             };
 
-            return await ExecuteStoredProcedure("pLockScenario", yearParameter, scenarioParameter, actionParameter);
+            return await ExecuteStoredProcedure(accessToken, "pLockScenario", yearParameter, scenarioParameter, actionParameter);
         }
 
-        public async Task<DataTable> GetReportDataTable(ReportParameters parameters)
+        public async Task<DataTable> GetReportDataTable(SafeAccessTokenHandle accessToken, ReportParameters parameters)
         {
             var spParameters = new[]
             {
@@ -132,7 +133,7 @@ namespace HearstWebService.BusinessLogic.StoredProcedures
 
             try
             {
-                return await _dbAccessor.Value.ExecuteStoredProcedureFillDataTableAsync("pHearstReport", spParameters);
+                return await _dbAccessor.Value.ExecuteStoredProcedureFillDataTableAsync(accessToken, "pHearstReport", spParameters);
             }
             catch
             {
@@ -140,11 +141,11 @@ namespace HearstWebService.BusinessLogic.StoredProcedures
             }
         }
 
-        private async Task<bool> ExecuteStoredProcedure(string storedProcedureName, params StoredProcedureParameter[] parameters)
+        private async Task<bool> ExecuteStoredProcedure(SafeAccessTokenHandle accessToken, string storedProcedureName, params StoredProcedureParameter[] parameters)
         {
             try
             {
-                var affectedRows = await _dbAccessor.Value.ExecuteStoredProcedureNonQueryAsync(storedProcedureName, parameters);
+                var affectedRows = await _dbAccessor.Value.ExecuteStoredProcedureNonQueryAsync(accessToken, storedProcedureName, parameters);
 
                 _logger.Value.Info($"{storedProcedureName}: {affectedRows} rows affected");
 

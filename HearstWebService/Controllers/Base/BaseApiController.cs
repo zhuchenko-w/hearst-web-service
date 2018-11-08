@@ -29,15 +29,6 @@ namespace HearstWebService.Controllers
             _logger = logger;
         }
 
-        protected async Task<T> RunImpersonated<T>(Func<Task<T>> func)
-        {
-            //using (var identityContext = ((WindowsIdentity)RequestContext.Principal.Identity).Impersonate())
-            //{
-            //    return await func();
-            //}
-            return await WindowsIdentity.RunImpersonated(new Microsoft.Win32.SafeHandles.SafeAccessTokenHandle(WindowsIdentity.GetCurrent().Token), func);
-        }
-
         protected IHttpActionResult GetOutputFileAsResponse(string filePath, string outputFileName = null)
         {
             var attempts = ConfigHelper.Instance.DownloadFileMaxAttempts ?? DownloadFileMaxAttemptsDefault;

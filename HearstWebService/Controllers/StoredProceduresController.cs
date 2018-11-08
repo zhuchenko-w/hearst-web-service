@@ -4,6 +4,7 @@ using System;
 using HearstWebService.Interfaces;
 using HearstWebService.Common;
 using System.Net;
+using System.Security.Principal;
 
 namespace HearstWebService.Controllers
 {
@@ -23,10 +24,7 @@ namespace HearstWebService.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> ApproveData(int batchNumber)
         {
-            return await RunImpersonated(async () =>
-            {
-                return await _storedProceduresLogic.Value.ApproveData(batchNumber) ? Ok() : HandleExceptionResult();
-            });
+            return await _storedProceduresLogic.Value.ApproveData(((WindowsIdentity)RequestContext.Principal.Identity).AccessToken, batchNumber) ? Ok() : HandleExceptionResult();
         }
 
         [Route("ActualToPm/{scenario:maxlength(10)?}/{year:maxlength(10)?}", Name = "ActualToPm")]
@@ -35,10 +33,7 @@ namespace HearstWebService.Controllers
         {
             try
             {
-                return await RunImpersonated(async () =>
-                {
-                    return await _storedProceduresLogic.Value.ActualToPm(scenario, year) ? Ok() : HandleExceptionResult();
-                });
+                return await _storedProceduresLogic.Value.ActualToPm(((WindowsIdentity)RequestContext.Principal.Identity).AccessToken, scenario, year) ? Ok() : HandleExceptionResult();
             }
             catch (InvalidParameterException ex)
             {
@@ -54,20 +49,14 @@ namespace HearstWebService.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> TransferData(int batchNumber)
         {
-            return await RunImpersonated(async () =>
-            {
-                return await _storedProceduresLogic.Value.TransferData(batchNumber) ? Ok() : HandleExceptionResult();
-            });
+            return await _storedProceduresLogic.Value.TransferData(((WindowsIdentity)RequestContext.Principal.Identity).AccessToken, batchNumber) ? Ok() : HandleExceptionResult();
         }
 
         [Route("LockScenario/{year:maxlength(10)?}/{scenario:maxlength(10)?}/{actionValue:int?}", Name = "LockScenario")]
         [HttpGet]
         public async Task<IHttpActionResult> LockScenario(string year, string scenario, int? actionValue)
         {
-            return await RunImpersonated(async () =>
-            {
-                return await _storedProceduresLogic.Value.LockScenario(year, scenario, actionValue) ? Ok() : HandleExceptionResult();
-            });
+            return await _storedProceduresLogic.Value.LockScenario(((WindowsIdentity)RequestContext.Principal.Identity).AccessToken, year, scenario, actionValue) ? Ok() : HandleExceptionResult();
         }
     }
 }

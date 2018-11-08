@@ -4,6 +4,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using HearstWebService.Common.Helpers;
 using HearstWebService.Data.Models;
 using HearstWebService.Interfaces;
+using Microsoft.Win32.SafeHandles;
 using System;
 using System.Data;
 using System.Globalization;
@@ -32,9 +33,9 @@ namespace HearstWebService.BusinessLogic.Reports
             _storedProceduresLogic = storedProceduresLogic;
         }
 
-        public async Task<string> CreateReport(ReportParameters parameters)
+        public async Task<string> CreateReport(SafeAccessTokenHandle accessToken, ReportParameters parameters)
         {
-            var checkResult = await CheckParameters(parameters);
+            var checkResult = await CheckParameters(accessToken, parameters);
             if (!checkResult.HasValue)
             {
                 LogAndThrow("Failed to get valid parameter values");
@@ -45,13 +46,13 @@ namespace HearstWebService.BusinessLogic.Reports
             }
             else
             {
-                var dataTable = await _storedProceduresLogic.Value.GetReportDataTable(parameters);
+                var dataTable = await _storedProceduresLogic.Value.GetReportDataTable(accessToken, parameters);
                 if (dataTable == null)
                 {
                     LogAndThrow("Failed to get report data");
                 }
 
-                var dbSettings = await _dbAccessor.Value.GetSettings();
+                var dbSettings = await _dbAccessor.Value.GetSettings(accessToken);
                 var templateFilePath = dbSettings.FirstOrDefault(p => p.Name == TemplateFilePathSettingKey)?.Value;
                 if (string.IsNullOrEmpty(templateFilePath))
                 {
@@ -90,14 +91,14 @@ namespace HearstWebService.BusinessLogic.Reports
             return null;
         }
 
-        private async Task<bool?> CheckParameters(ReportParameters parameters)
+        private async Task<bool?> CheckParameters(SafeAccessTokenHandle accessToken, ReportParameters parameters)
         {
             try
             {
                 return (!parameters.KindVgo.HasValue || ConfigHelper.Instance.KindVgoValidValues.Contains(parameters.KindVgo.Value)) &&
-                    (await _dbAccessor.Value.GetDistinctValidReportEntitiesAsync()).Contains(parameters.Entity) &&
-                    (await _dbAccessor.Value.GetDistinctValidReportYearsAsync()).Contains(parameters.Year) &&
-                    (await _dbAccessor.Value.GetDistinctValidReportScenariosAsync()).Contains(parameters.Scenario);
+                    (await _dbAccessor.Value.GetDistinctValidReportEntitiesAsync(accessToken)).Contains(parameters.Entity) &&
+                    (await _dbAccessor.Value.GetDistinctValidReportYearsAsync(accessToken)).Contains(parameters.Year) &&
+                    (await _dbAccessor.Value.GetDistinctValidReportScenariosAsync(accessToken)).Contains(parameters.Scenario);
             }
             catch
             {
